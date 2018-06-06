@@ -60,6 +60,8 @@ def get_corrcoef(x_array, y_array):
 def plot_arrays(x_array, y_array, category_title, category_array, x_title, y_title, out_img):
     font_set = FontProperties(fname=r"c:\windows\fonts\calibri.ttf", size=15)
     category_f0 = plt.figure(0, figsize=(20, 10))
+    fileformat  = os.path.splitext(out_img)[1][1:]
+
     for cat_value in category_array:
         cat_idx = category_array.index(cat_value)
         ax      = plt.subplot(2, 2, cat_idx + 1)
@@ -73,7 +75,7 @@ def plot_arrays(x_array, y_array, category_title, category_array, x_title, y_tit
         plt.grid(True)
     plt.subplots_adjust(left=0.123, right=0.9, bottom=0.1, top=0.9, wspace=0.2, hspace=0.2)
     #plt.show()
-    plt.savefig(out_img, format='pdf', dpi=150)
+    plt.savefig(out_img, format=fileformat, dpi=150)
 
 def CheckFile(FileName):
     if not os.path.exists(FileName):
