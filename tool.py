@@ -3,7 +3,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-import numpy
+import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
@@ -52,6 +52,11 @@ def extract_info(inf_name, category_title, category_array, x_title, y_title):
 
     return x_array, y_array
 
+def get_corrcoef(x_array, y_array):
+    x_np = np.array(x_array)
+    y_np = np.array(y_array)
+    return np.corrcoef(x_np[:], y_np[:])
+
 def plot_arrays(x_array, y_array, category_title, category_array, x_title, y_title, out_img):
     font_set = FontProperties(fname=r"c:\windows\fonts\calibri.ttf", size=15)
     category_f0 = plt.figure(0, figsize=(20, 10))
@@ -62,8 +67,8 @@ def plot_arrays(x_array, y_array, category_title, category_array, x_title, y_tit
         plt.ylabel(y_title, fontproperties=font_set, fontsize = 14)
         plt.xticks(fontsize=12)
         plt.yticks(fontsize=12)
-
-        plt.title(category_title + " = %s"%cat_value, fontproperties=font_set, fontsize = 12)
+        corcoef = get_corrcoef(x_array[cat_idx], y_array[cat_idx])[0][1]
+        plt.title(category_title + " = %s, corrcoef = %5.3f"%(cat_value, corcoef), fontproperties=font_set, fontsize = 12)
         plt.scatter(x_array[cat_idx], y_array[cat_idx], c='red', marker='+')
         plt.grid(True)
     plt.subplots_adjust(left=0.123, right=0.9, bottom=0.1, top=0.9, wspace=0.2, hspace=0.2)
