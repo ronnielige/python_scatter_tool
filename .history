@@ -1,0 +1,6 @@
+Source: D:/Projects/python_scatter_tool/_est_residual_bits_baseketball_qp20.log
+Output: D:/Projects/python_scatter_tool/plot.pdf
+cattit: log2width
+catval: 6 5 4 3
+xtitle: realbits
+ytitle: estbits
